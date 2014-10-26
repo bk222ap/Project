@@ -38,7 +38,7 @@ class mainController
 	
 	public function startApp()
 	{
-		//user wants to see a champ
+		//user wants to see a champ  
 		if ($this->appView->userWantsToSeeChamp()) 
 		{
 			//get champ ID.

@@ -18,7 +18,6 @@ class ChampModel
 		{
 			array_push($retArray, new Champion($champ['ID'], $champ['NAME']));
 		}
-		//var_dump($retArray);
 		return $retArray;
 	}
 

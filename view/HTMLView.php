@@ -8,11 +8,13 @@ class HTMLView
 		return'<!DOCTYPE HTML>
 				<html>
 					<head>
-						<title> Första sidan </title>
+						<meta charset="utf-8" />
+						<link rel="stylesheet" href="css/site.css" />
+						<title> ChampBuilder </title>
 					</head>
 					<body>
 						<div id="mainBody">
-							<H1>Stuff goes here</H1>
+							<H1>Champ Builder</H1>
 							'.$body.'							
 						</div>
 					</body>

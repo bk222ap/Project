@@ -19,12 +19,7 @@ class AppView
 	
 	private $numberOfSpells = 4;
 	
-	public function firstPagelol()
-	{
-		
-		return"More stuff";
-	}
-	
+
 	public function showChamps($ID,$Name)
 	{
 		return "<p><a href='index.php?".$this->seeChampID."=".$ID."'>" .$Name."</a></p>";
@@ -43,9 +38,9 @@ class AppView
 
 	public function showBuild($build, $items, $champ, $levels){
 		$html = "";
-		$html .= "<p>Champion: <a href='index.php?".$this->seeChampID."=".$champ->getChampID()."'>" . $champ->getChampName() . "</p>";
-		$html .= "<p>Name: " . $build->getTitle() . "</p>";
-		$html .= "<p>Description: " . $build->getDescription() . "</p>";
+		$html .= "<p>Champion: <a href='index.php?".$this->seeChampID."=".$champ->getChampID()."'>" . $champ->getChampName() . "</a></p>";
+		$html .= "<H3>" . $build->getTitle() . "</H3>";
+		$html .= "<p>" . $build->getDescription() . "</p>";
 		$html .= "<a href='index.php?" . $this->seeItemID . "=" . $items[1]->getItemID() . "'>" . $items[1]->getItemName() . "</a>
 				 <a href='index.php?" . $this->seeItemID . "=" . $items[2]->getItemID() . "'>" . $items[2]->getItemName() . "</a>
 				 <a href='index.php?" . $this->seeItemID . "=" . $items[3]->getItemID() . "'>" . $items[3]->getItemName() . "</a>
@@ -87,7 +82,8 @@ class AppView
 	{
 
 		return "<p><a href='index.php?" . $this->seeBuildID . "=" . $build->getID()  . 
-				"'> Build:". $build->getID() . "</a> Items: <a href='index.php?SeeItemID=" . $items[0]->getItemID() . "'><img src='" . $items[0]->getURL() ."'></a>
+				"'> Build:". $build->getID() . "</a> Items: 
+				 <a href='index.php?SeeItemID=" . $items[0]->getItemID() . "'><img src='" . $items[0]->getURL() ."'></a>
 				 <a href='index.php?SeeItemID=" . $items[1]->getItemID() . "'><img src='" . $items[1]->getURL() ."'></a>
 				 <a href='index.php?SeeItemID=" . $items[2]->getItemID() . "'><img src='" . $items[2]->getURL() ."'></a>
 				 <a href='index.php?SeeItemID=" . $items[3]->getItemID() . "'><img src='" . $items[3]->getURL() ."'></a>

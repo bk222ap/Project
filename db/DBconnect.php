@@ -9,6 +9,8 @@ class ConnectDB
 	private $databas = "champbuilder";
 	private $dbCon;
 	
+	//Ansluter till Databasen
+	
 	public function connectToDB()
 	{
 		$this->dbCon = mysqli_connect($this->host, $this->user, $this->password, $this->databas);	
@@ -20,6 +22,7 @@ class ConnectDB
 		}
 	}
 
+	// Hämtar ut alla champs ifrån databasen.
 	public function getChamps()
 	{
   		$this->connectToDB();
@@ -51,6 +54,12 @@ class ConnectDB
  	 return $retArray;
 	}
 	
+	
+	/* Fetches a chosen build for a champ.
+	*
+	* RETURN: Array with all build id connected to the champ
+	*/
+	
 	public function getBuildByChampID($id){
 		$this->connectToDB();
   
@@ -80,6 +89,11 @@ class ConnectDB
  	// Return
  	 return $retArray;
 	}
+	
+	/* Fetches chosen champ with ID
+	*
+	* RETURN: Array with champ
+	*/
 	public function getChampByID($id){
 		$this->connectToDB();
   
@@ -109,6 +123,7 @@ class ConnectDB
  	// Return
  	 return $retArray;
 	}
+	
 	public function getBuildItemsByID($id)
 	{
   		$this->connectToDB();
@@ -233,7 +248,6 @@ class ConnectDB
 
 	public function addBuild($completeBuild){
 		$this->connectToDB();
-  		echo "adding";
  	 	$this->dbCon->query("SET @champid = " . "'" . $this->dbCon->real_escape_string($completeBuild->getChampID()) . "'");
  		$this->dbCon->query("SET @i1 = " . "'" . $this->dbCon->real_escape_string($completeBuild->getI1()) . "'");
 	 	$this->dbCon->query("SET @i2 = " . "'" . $this->dbCon->real_escape_string($completeBuild->getI2()) . "'");

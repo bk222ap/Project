@@ -1,0 +1,14 @@
+body
+{
+	background-color: #292929;
+}
+
+#mainBody
+{
+	width: 650px;
+	margin: 20px auto;
+	padding: 20px;
+	background-color: #ffffff;
+	color: #000000;
+}
+

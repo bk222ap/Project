@@ -19,7 +19,6 @@ class ItemModel
 		{
 			array_push($retArray, new Item($item['ID'], $item['NAME'], $item['URL']));
 		}
-		//var_dump($retArray);
 		return $retArray;
 	}
 	

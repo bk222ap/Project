@@ -14,7 +14,6 @@ class BuildModel
 	{
 		$retArray = array();
 		$builItems = $this->dbBuild->getBuildItemsByID($id);
-		var_dump($id);
 		return new BuildItem($builItems[0]['BuildID'], $builItems[0]['ItemID'],  $builItems[1]['ItemID'],  $builItems[2]['ItemID'],  $builItems[3]['ItemID'],  $builItems[4]['ItemID'],  $builItems[5]['ItemID']);
 	}
 
