@@ -21,12 +21,20 @@ class ChampModel
 		//var_dump($retArray);
 		return $retArray;
 	}
+
+	public function getChampByID($id)
+	{
+		$retArray = array();
+		$champArray = $this->dbChampions->getChampByID($id);
+		return new Champion($champArray[0]['ID'], $champArray[0]['NAME']);
+
+	}
 	
 	public function getBuildByChampID($id){
 		$builds = $this->dbChampions->getBuildByChampID($id);
 		$buildsList = array();
 		foreach($builds as $b) {
-			array_push($buildsList, new Build($b['ID'], $b['CHAMPID']));
+			array_push($buildsList, new Build($b['ID'], $b['CHAMPID'],$b['titel'],$b['description']));
 		}
 		return $buildsList;
 	}
