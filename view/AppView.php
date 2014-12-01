@@ -4,20 +4,45 @@ namespace View;
 class AppView
 {
 	private $seeChampID ='SeeChampID';
-
 	private $seeBuildID ='SeeBuildID';
-
 	private $seeItemID =  "SeeItemID";
-	
+	private $userIDString = "userID";
+	private $title = "titel";
+	private $radio = "radio";
+	private $description = "description";
 	private $addNewBuild ='AddBuild';
-	
+	private $addCommentOnBuild = "AddCommentOnBuild";
+	private $commentString = "comment";
 	private $champID ='ChampID';
-	
 	private $numberOfItems =6;
-	
 	private $numberOfLevels = 18;
-	
 	private $numberOfSpells = 4;
+	
+	//radio buttons POST names and Items 
+	private $radio0 = "radio0";
+	private $radio1 = "radio1";
+	private $radio2 = "radio2";
+	private $radio3 = "radio3";
+	private $radio4 = "radio4";
+	private $radio5 = "radio5";
+	private $radio6 = "radio6";
+	private $radio7 = "radio7";
+	private $radio8 = "radio8";
+	private $radio9 = "radio9";
+	private $radio10 = "radio10";
+	private $radio11 = "radio11";
+	private $radio12 = "radio12";
+	private $radio13 = "radio13";
+	private $radio14 = "radio14";
+	private $radio15 = "radio15";
+	private $radio16 = "radio16";
+	private $radio17 = "radio17";
+	private $item1 = "item1";
+	private $item2 = "item2";
+	private $item3 = "item3";
+	private $item4 = "item4";
+	private $item5 = "item5";
+	private $item6 = "item6";
 	
 
 	public function showChamps($ID,$Name)
@@ -36,7 +61,8 @@ class AppView
 				<img src='" . $item->getURL() . "'/>";
 	}
 
-	public function showBuild($build, $items, $champ, $levels){
+	public function showBuild($build, $items, $champ, $levels)
+	{
 		$html = "";
 		$html .= "<p>Champion: <a href='index.php?".$this->seeChampID."=".$champ->getChampID()."'>" . $champ->getChampName() . "</a></p>";
 		$html .= "<H3>" . $build->getTitle() . "</H3>";
@@ -48,8 +74,10 @@ class AppView
 				 <a href='index.php?" . $this->seeItemID . "=" . $items[5]->getItemID() . "'>" . $items[5]->getItemName() . "</a></p>";
 		$html .= "<p> Levels </p>";
 
-		for($i = 0; $i < $this->numberOfSpells; $i++){
-			switch ($i) {
+		for($i = 0; $i < $this->numberOfSpells; $i++)
+		{
+			switch ($i)
+			{
 				case 0:	
 					$html .= "Q:";				
 					break;
@@ -64,9 +92,11 @@ class AppView
 					break;
 			}
 			
-			for($j = 0; $j < $this->numberOfLevels; $j++){
+			for($j = 0; $j < $this->numberOfLevels; $j++)
+			{
 				$html .= "<input type='radio' disabled='true' name='radio" . $j ."' value='". $i ."'   ";
-				if($i == $levels->getl($j)){
+				if($i == $levels->getl($j))
+				{
 					$html .= "checked";
 				}					
 				$html .=  " />";
@@ -77,7 +107,7 @@ class AppView
 		return $html;
 
 	}
-	
+		// A certain builds buildList
 	public function buildBuildsList($build, $items)
 	{
 
@@ -93,9 +123,9 @@ class AppView
 
 	public function getAddBuildHTML()
 	{
-		return "<p><a href='index.php?".$this->addNewBuild."'> Add New Build tiihii </a> </p>";
-	}
-
+		return "<p><a href='index.php?".$this->addNewBuild."'> Add New Build tiihii </a></p>";
+	
+}
 	public function getCreateBuild($items,$champs)
 	{
 
@@ -103,28 +133,31 @@ class AppView
 		$html .= "<form action='index.php?" . $this->addNewBuild . "' method='post'>";	
 		$html .= "Champion: ";
 		$html .= "<select name='".$this->champID."'>";
-		foreach($champs as $champ){
+		foreach($champs as $champ)
+		{
 			$html .= "<option value='" . $champ->getChampID() ."'>" . $champ->getChampName() ."</option> ";
 		}
 		$html .= "</select>";
 
 		// Create all select with all options
 		$html .= "<br>";
-		for($i = 0; $i < $this->numberOfItems; $i++){
+		for($i = 0; $i < $this->numberOfItems; $i++)
+		{
 			$html .= "Item: " . ($i + 1);
 			$html .= " <select name='item". ($i + 1) . "'>";
-			foreach($items as $item){
-				$html .= "<option value='" . $item->getItemID() ."'>" . $item->getItemName() ."</option> ";
+			foreach($items as $item)
+			{
+				$html .= "<option value='" . $item->getItemID() ."'>" . $item->getItemName() ."</option>";
 			}
 			$html .= "</select><br> ";
 
 			
 		}
 		
-		$html .= "Titel: <br> <input type='text' name='titel'> <br>";
-		$html .= "Add Description here:<br> <textarea name='description' rows='10' cols='80'></textarea>";
-		$html .= "<p><input type='submit' value='Create Build' /></p>";
 		$html .= $this->getAbilityLevels();
+		$html .= "<br> Title: <br> <input type='text' name='titel'> <br>";
+		$html .= "<br>Add Description here:<br> <textarea name='description' rows='10' cols='80'></textarea>";
+		$html .= "<p><input type='submit' value='Create Build' /></p>";
 		$html .= "</form>";
 		return $html;
 	}
@@ -132,8 +165,10 @@ class AppView
 		public function getAbilityLevels()
 	{
 		$html ="";
-		for($i = 0; $i < $this->numberOfSpells; $i++){
-			switch ($i) {
+		for($i = 0; $i < $this->numberOfSpells; $i++)
+		{
+			switch ($i) 
+			{
 				case 0:	
 					$html .= "Q:";				
 					break;
@@ -148,10 +183,13 @@ class AppView
 					break;
 			}
 			
-			for($j = 0; $j < $this->numberOfLevels; $j++){
+			for($j = 0; $j < $this->numberOfLevels; $j++)
+			{
 				$html .= "<input type='radio' name='radio" . $j ."' value='". $i ."'   ";
-				if(isset($_POST['radio' . $i]) && isset($_POST['radio' . $j])){
-					if($_POST['radio' . $j] == $i){
+				if(isset($_POST[$this->radio . $i]) && isset($_POST[$this->radio . $j]))
+				{
+					if($_POST[$this->radio . $j] == $i)
+					{
 						$html .= "checked";
 					}					
 				}
@@ -160,34 +198,119 @@ class AppView
 			$html .= "<br>";
 		}
 		
-		if($this->validateLevels()){
-			for($i = 0; $i < $this->numberOfLevels; $i++){
-				$html .= "<br>Level: " . ($i + 1) . " ability: " . $_POST['radio' . $i];
+		if($this->validateAdd())
+		{
+			for($i = 0; $i < $this->numberOfLevels; $i++)
+			{
+				$html .= "<br>Level: " . ($i + 1) . " ability: " . $_POST[$this->radio . $i];
 			}
 		}
-		else{
-			$html .= "Errors in level distrubution, need 1 ability in each level!";
+		else
+		{
+			$html .= "You Need to place a point on every level! <br>";
 		}
 		
 		return $html;
 	}
 
+	public function showComment($c)
+	{
+		return "
+			<p>Comment: " . $c[$this->commentString] . "</p>
+			";
 
-	public function locationToAddedBuild(){
+	}
+
+	/**
+	 * @return HTML for writing a comment
+	 */
+	public function showAddNewComment()
+	{
+		$html = "
+			<p> What do you think? </p>
+			<form action='index.php?". $this->seeBuildID . "=" 
+												  . $_GET[$this->seeBuildID] . 
+												  "&" . $this->addCommentOnBuild . 
+												  "=" . $_GET[$this->seeBuildID] . "' method='post'>
+				<label>Comment</label><br>
+				<textarea name='". $this->commentString . "' rows='4' cols='50'>
+				</textarea><br>
+				<button class='.button-link' type='submit'>Comment</button>
+			</form>		
+		";
+		
+		return $html;
+	}
+
+	public function userWantsToAddAComment()
+	{
+		return isset($_POST[$this->commentString]);
+	}
+
+	public function getIndexLink()
+	{
+		return "<p><a href='index.php' class='notTheSameAsTheOthers'>Back</a></p>";
+	}
+
+	public function getPostedComment()
+	{
+		return $_POST[$this->commentString];
+	}
+
+	public function locationToAddedBuild()
+	{
 		header("Location: index.php?" . $this->seeChampID  . "=" . $_POST[$this->champID]);
 		die();
 	}
 
 	//isset
-	public function validateLevels()
+	public function validateAdd()
 	{
 		$ok = true;
-		for($i = 0; $i < $this->numberOfLevels; $i++){
-			if(!isset($_POST['radio' . $i])){
+		for($i = 0; $i < $this->numberOfLevels; $i++)
+		{
+			if(!isset($_POST[$this->radio . $i]))
+			{
 				$ok = false;
 			}
 		}
+		if(!isset($_POST[$this->title]))
+		{
+			$ok = false;
+		}
+		if(!isset($_POST[$this->description]))
+		{
+			$ok = false;
+		}
 		return $ok;
+	}
+
+	public function getButtons()
+	{
+		$buttons = array();
+		for($i = 0; $i < $this->numberOfLevels; $i++)
+		{
+			if(isset($_POST[$this->radio . $i]))
+			{
+				array_push($buttons, $_POST[$this->radio . $i]);
+			}
+		}
+		return $buttons;
+	}
+
+	public function getTitle()
+	{
+		return $_POST[$this->title];
+	}
+
+	public function getDesc()
+	{
+		return $_POST[$this->description];
+	}
+
+	public function getUserIDString()
+	{
+	 	return $this->userIDString;
 	}
 
 	public function userWantsToAddBuild()
@@ -253,14 +376,113 @@ class AppView
 			return -1;
 		}
 	}
+	// returns all information to have in a build(items,title, description and LevelsUps,)
 	public function getNewBuildPosted()
 	{
-		return new \Model\CompleteBuild($_POST[$this->champID], $_POST['item1'], $_POST['item2'],$_POST['item3'],
-															   $_POST['item4'], $_POST['item5'], $_POST['item6'], $_POST['titel'], $_POST['description'],
-															   $_POST['radio0'],$_POST['radio1'],$_POST['radio2'],$_POST['radio3'],$_POST['radio4'],$_POST['radio5'],
-															   $_POST['radio6'],$_POST['radio7'],$_POST['radio8'],$_POST['radio9'],$_POST['radio10'],$_POST['radio11'],
-															   $_POST['radio12'],$_POST['radio13'],$_POST['radio14'],$_POST['radio15'],$_POST['radio16'],$_POST['radio17']);
+		return new \Model\CompleteBuild($_POST[$this->champID], $_POST[$this->item1], $_POST[$this->item2],
+																$_POST[$this->item3],$_POST[$this->item4], 
+																$_POST[$this->item5], $_POST[$this->item6], 
+															   $_POST[$this->title], $_POST[$this->description],
+															   $_POST[$this->radio0],$_POST[$this->radio1],
+															   $_POST[$this->radio2],$_POST[$this->radio3],
+															   $_POST[$this->radio4],$_POST[$this->radio5],
+															   $_POST[$this->radio6],$_POST[$this->radio7],
+															   $_POST[$this->radio8],$_POST[$this->radio9],
+															   $_POST[$this->radio10],$_POST[$this->radio11],
+															   $_POST[$this->radio12],$_POST[$this->radio13],
+															   $_POST[$this->radio14],$_POST[$this->radio15],
+															   $_POST[$this->radio16],$_POST[$this->radio17]);
+	}
+
+	private $errors = array();
+	private $successes = array();
+
+	public function hasErrors()
+	{
+		return count($this->errors) > 0;
+	}
+
+	public function hasSuccesses()
+	{
+		return count($this->successes) > 0;
 	}
 
 
+
+	// ERROR AND SUCCESS MESSAGES BELLOW!
+	
+	public function getErrorHTML()
+	{
+
+		$html = "<div id='errors'>";
+		foreach ($this->errors as $error)
+		{
+			$html .= "<p>" . $error . "</p>";
+		}
+		$html .= "</div>";
+		return $html;
+	}
+
+	public function getSuccessHTML()
+	{
+		
+		$html = "<div id='successes'>";
+		foreach ($this->successes as $success)
+		{
+			$html .= "<p>" . $success . "</p>";
+		}
+		$html .= "</div>";
+		return $html;
+	}
+
+	public function addBuildSuccessMessage()
+	{
+		array_push($this->successes,"Build was added successfully");
+	}
+
+	public function addCommentSuccessMessage()
+	{
+		array_push($this->successes,"Comment was added successfully");
+	}
+
+	public function titleMissingErrorMessage()
+	{
+		array_push($this->errors,"The Title was missing");
+	}
+
+	public function levelsMissingErrorMessage()
+	{
+		array_push($this->errors,"Levels not filled");
+	}
+
+	public function noBuildsFoundError()
+	{
+		array_push($this->errors,"No builds found");
+	}
+
+	public function noCommentErrorMessage()
+	{
+		array_push($this->errors,"Enter a comment to comment");
+	}
+
+	public function addBuildError()
+	{
+		array_push($this->errors,"Error adding build, fill all the info");
+	}
+
+	public function registerCompleteSuccessMessage()
+	{
+		array_push($this->successes,"Register Complete <a href='index.php'>click me</a>");
+	}
+
+	public function registerFailErrorMessage()
+	{
+		array_push($this->errors,"Fill in both username AND password");
+	}
+
+	public function usernameAlreadyExistsErrorMessage()
+	{
+		array_push($this->errors,"Username already exists");
+	}
+	
 }

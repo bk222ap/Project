@@ -25,7 +25,8 @@ class Item
 		return $this->itemID;
 	}
 	
-	public function getURL(){
+	public function getURL()
+	{
 		return $this->URL;
 	}
 }

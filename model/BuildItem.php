@@ -12,7 +12,8 @@ class BuildItem{
 	private $i5;
 	private $i6;	
 	
-	public function __construct($ID, $i1, $i2, $i3, $i4, $i5, $i6){
+	public function __construct($ID, $i1, $i2, $i3, $i4, $i5, $i6)
+	{
 		$this->id = $ID;
 		$this->i1 = $i1;
 		$this->i2 = $i2;
@@ -22,31 +23,38 @@ class BuildItem{
 		$this->i6 = $i6;		
 	}
 	
-	public function getID(){
+	public function getID()
+	{
 		return $this->id;
 	}
 	
-	public function getI1(){
+	public function getI1()
+	{
 		return $this->i1;
 	}
 	
-	public function getI2(){
+	public function getI2()
+	{
 		return $this->i2;
 	}
 	
-	public function getI3(){
+	public function getI3()
+	{
 		return $this->i3;
 	}
 	
-	public function getI4(){
+	public function getI4()
+	{
 		return $this->i4;
 	}
 	
-	public function getI5(){
+	public function getI5()
+	{
 		return $this->i5;
 	}
 	
-	public function getI6(){
+	public function getI6()
+	{
 		return $this->i6;
 	}
 }

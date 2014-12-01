@@ -1,6 +1,26 @@
+h1
+{
+	text-align: center;
+}
+
+a:hover {
+    color: #FF00FF;
+}
+.notTheSameAsTheOthers
+{
+	text-align:right;
+}
+
+.yeahImDifferent
+{
+	text-align: center;
+}
+img:hover {
+    opacity: 0.5;
+}
 body
 {
-	background-color: #292929;
+	background-color: black;
 }
 
 #mainBody
@@ -12,3 +32,12 @@ body
 	color: #000000;
 }
 
+#errors
+{
+	background-color: red;
+}
+
+#successes
+{
+	background-color: green;
+}

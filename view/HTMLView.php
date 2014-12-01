@@ -3,7 +3,7 @@ namespace View;
 
 class HTMLView
 {
-	public function getHTMLPage($body)
+	public function getHTMLPage($body,$errors,$successes)
 	{
 		return'<!DOCTYPE HTML>
 				<html>
@@ -15,6 +15,8 @@ class HTMLView
 					<body>
 						<div id="mainBody">
 							<H1>Champ Builder</H1>
+							'.$successes.'
+							'.$errors.'
 							'.$body.'							
 						</div>
 					</body>

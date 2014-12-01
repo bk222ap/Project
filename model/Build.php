@@ -9,24 +9,29 @@ class Build{
 	private $title;
 	private $description;
 	
-	public function __construct($ID, $champID, $title, $description){
+	public function __construct($ID, $champID, $title, $description)
+	{
 		$this->ID = $ID;
 		$this->champID = $champID;
 		$this->title = $title;
 		$this->description = $description;
 	}
 	
-	public function getID(){
+	public function getID()
+	{
 		return $this->ID;
 	}
 	
-	public function getChampID(){
+	public function getChampID()
+	{
 		return $this->champID;
 	}
-	public function getTitle(){
+	public function getTitle()
+	{
 		return $this->title;
 	}
-	public function getDescription(){
+	public function getDescription()
+	{
 		return $this->description;
 	}
 }

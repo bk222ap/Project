@@ -3,14 +3,20 @@
 namespace Model;
 
 class CompleteBuild
-{
+{	
+	private $title;
+	private $description;
 	private $champID;
+
+	// Items
 	private $i1;
 	private $i2;
 	private $i3;
 	private $i4;
 	private $i5;
 	private $i6;
+
+	// LevelUps
 	private $l1;
 	private $l2;
 	private $l3;
@@ -29,11 +35,11 @@ class CompleteBuild
 	private $l16;
 	private $l17;
 	private $l18;
-	private $title;
-	private $description;
+	
 
 	public function __construct($champID, $i1,$i2,$i3,$i4,$i5,$i6, $title, $description, 
-		$l1,$l2,$l3,$l4,$l5,$l6,$l7,$l8,$l9,$l10,$l11,$l12,$l13,$l14,$l15,$l16,$l17,$l18){
+		$l1,$l2,$l3,$l4,$l5,$l6,$l7,$l8,$l9,$l10,$l11,$l12,$l13,$l14,$l15,$l16,$l17,$l18)
+	{
 		$this->champID = $champID;
 		$this->i1 = $i1;
 		$this->i2 = $i2;
@@ -66,116 +72,143 @@ class CompleteBuild
 		$this->description = $description;
 	}
 
-	public function getChampID(){
+	public function getChampID()
+	{
 		return $this->champID;
 	}
 
-	public function getTitle(){
+	public function getTitle()
+	{
 		return $this->title;
 	}
 
-	public function getDescription(){
+	public function getDescription()
+	{
 		return $this->description;
 	}
 
-	public function getI1(){
+	public function getI1()
+	{
 		return $this->i1;
 	}
 
-	public function getI2(){
+	public function getI2()
+	{
 		return $this->i2;
 	}
 
-	public function getI3(){
+	public function getI3()
+	{
 		return $this->i3;
 	}
 
-	public function getI4(){
+	public function getI4()
+	{
 		return $this->i4;
 	}
 
-	public function getI5(){
+	public function getI5()
+	{
 		return $this->i5;
 	}
 
-	public function getI6(){
+	public function getI6()
+	{
 		return $this->i6;
 	}
 
-	public function getl1(){
+	public function getl1()
+	{
 		return $this->l1;
 	}
 
-	public function getl2(){
+	public function getl2()
+	{
 		return $this->l2;
 	}
 
-	public function getl3(){
+	public function getl3()
+	{
 		return $this->l3;
 	}
 
-	public function getl4(){
+	public function getl4()
+	{
 		return $this->l4;
 	}
 
-	public function getl5(){
+	public function getl5()
+	{
 		return $this->l5;
 	}
 
-	public function getl6(){
+	public function getl6()
+	{
 		return $this->l6;
 	}
 
-	public function getl7(){
+	public function getl7()
+	{
 		return $this->l7;
 	}
 
 
-	public function getl8(){
+	public function getl8()
+	{
 		return $this->l8;
 	}
 
-	public function getl9(){
+	public function getl9()
+	{
 		return $this->l9;
 	}
 
 
-	public function getl10(){
+	public function getl10()
+	{
 		return $this->l10;
 	}
 
-	public function getl11(){
+	public function getl11()
+	{
 		return $this->l11;
 	}
 
-	public function getl12(){
+	public function getl12()
+	{
 		return $this->l12;
 	}
 
 
-	public function getl13(){
+	public function getl13()
+	{
 		return $this->l13;
 	}
 
-	public function getl14(){
+	public function getl14()
+	{
 		return $this->l14;
 	}
 
 
-	public function getl15(){
+	public function getl15()
+	{
 		return $this->l15;
 	}
 
-	public function getl16(){
+	public function getl16()
+	{
 		return $this->l16;
 	}
 
 
-	public function getl17(){
+	public function getl17()
+	{
 		return $this->l17;
 	}
 
-	public function getl18(){
+	public function getl18()
+	{
 		return $this->l18;
 	}
 }
