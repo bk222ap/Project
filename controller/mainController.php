@@ -71,6 +71,7 @@ class mainController
 				}
 				else{
 					$this->htmlBody .= $this->appView->getBuildsHeader($champ->getChampName());
+					$this->htmlBody .= $this->appView->getBuildInformation();
 				}
 				foreach ($builds as $build) 
 				{
@@ -187,17 +188,17 @@ class mainController
 			{
 				$this->htmlBody .= "Not found";
 			}
-
-			
-			
 		}
-
+			// Shows a single item
 		else if($this->appView->userWantsToSeeItem())
 		{
 			$id = $this->appView->getSeeItemID();
 			$item = $this->itemModel->getItemById($id);
 			$this->htmlBody .= $this->appView->showItem($item);
+			$this->htmlBody .= $this->appView->getIndexLink();
 		}
+
+		// Register a User
 		else if($this->LoginView->userWantsToRegister())
 		{
 			if($this->LoginView->userHavePostedRegisterInfo())
@@ -260,20 +261,18 @@ class mainController
 
 		return $this->html->getHTMLPage($this->htmlBody, $errors, $successes);
 	}
-	
+
+	// The Frontpage. Shows all available Champions
 	public function allChamps()
 	{
-		
 		$champArray = $this->champModel->getChamps();
 		foreach ($champArray as $champ) 
 		{
 			$this->htmlBody.= $this->appView->showChamps($champ->getChampID(),$champ->getChampName());
 		}
-		//$this->htmlBody .= $this->appView->firstPagelol();
-		
-		//return $this->html->getHTMLPage($this->htmlBody);
 	}
-	
+	 
+	 // Login screen
 	public function WriteLoginHTML()
 	{
 		// If user is logged in
@@ -293,6 +292,7 @@ class mainController
 		}
 	}
 
+		// shows all items
 	public function allItems()
 	{		
 		$itemArray = $this->itemModel->getItems();
@@ -300,15 +300,11 @@ class mainController
 		{
 			$this->htmlBody.= $this->appView->showItems($item->getItemID(),$item->getItemName());
 		}
-		//$this->htmlBody .= $this->appView->firstPagelol();
-		
-		//return $this->html->getHTMLPage($this->htmlBody);
 	}
 	
 	public function UserIsLoggedIn()
 	{
 		$this->loggedStatus = $this->LoginView->getLoggedInUserMessage();
-		//$this->title = $this->LoginView->getLoggedInTitle();
 	}
 	
 	/**

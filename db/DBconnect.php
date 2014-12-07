@@ -28,8 +28,7 @@ class ConnectDB
   		$this->connectToDB();
   
  	 	$retArray = array();
- 	 	//$this->mysqli->query("SET @CID = " . "'" . $this->mysqli->real_escape_string($CID) . "'");
- 
+
 	 	if (!$result = $this->dbCon->query("CALL GetChamps()")) 
 	 	{
   	 		throw new \Exception($this->dbCon->error, $this->dbCon->errno);
@@ -126,6 +125,7 @@ class ConnectDB
  	 return $retArray;
 	}
 	
+	// Get the right items for a build.
 	public function getBuildItemsByID($id)
 	{
   		$this->connectToDB();
@@ -156,6 +156,8 @@ class ConnectDB
  	// Return
  	 return $retArray;
 	}
+
+	// Gets a certain build
 	public function getBuildByID($id)
 	{
   		$this->connectToDB();
@@ -187,6 +189,7 @@ class ConnectDB
  	 return $retArray;
 	}
 	
+	// Gets a certain item
 	public function getItemById($id)
 	{
 		$this->connectToDB();
@@ -218,6 +221,7 @@ class ConnectDB
  	 return $retArray;
 	}
 	
+	// gets all items
 	public function getItems()
 	{
 		$this->connectToDB();
@@ -247,7 +251,7 @@ class ConnectDB
  	return $retArray;
 	
 	}
-
+	// Login user. Searches for the posted usarname in db
 	public function getUserFromUsername($un)
 	{
 		$this->connectToDB();
@@ -278,8 +282,9 @@ class ConnectDB
 	
 	}
 
-public function addComment($buildId, $userId, $comment)
-{
+		// add a comment to a build.
+	public function addComment($buildId, $userId, $comment)
+	{
 		$this->connectToDB();
   
  	 	$this->dbCon->query("SET @buildId = " . "'" . $this->dbCon->real_escape_string($buildId) . "'");
@@ -296,8 +301,9 @@ public function addComment($buildId, $userId, $comment)
 	}
 
 
-public function registerUser($username, $pass)
-{
+	// registering user
+	public function registerUser($username, $pass)
+	{
 		$this->connectToDB();
   
  	 	$this->dbCon->query("SET @username = " . "'" . $this->dbCon->real_escape_string($username) . "'");
@@ -312,7 +318,7 @@ public function registerUser($username, $pass)
 		mysqli_close($this->dbCon);
 	}
 
-
+	// Adds a new build made by user
 	public function addBuild($completeBuild)
 	{
 		$this->connectToDB();
@@ -334,8 +340,9 @@ public function registerUser($username, $pass)
 		mysqli_close($this->dbCon);
 	}
 
-public function getAllCommentsForID($id)
-{
+	// Gets all comments for a build
+	public function getAllCommentsForID($id)
+	{
 		$this->connectToDB();
   
  	 	$retArray = array();
@@ -365,7 +372,7 @@ public function getAllCommentsForID($id)
  	 return $retArray;
 	}
 
-
+	// gets radio levels for a build.
 	public function getLevelsByID($id)
 	{
 		$this->connectToDB();

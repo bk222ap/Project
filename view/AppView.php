@@ -3,6 +3,9 @@ namespace View;
 
 class AppView
 {
+
+	// Variabler för att motvärka strängberoende
+
 	private $seeChampID ='SeeChampID';
 	private $seeBuildID ='SeeBuildID';
 	private $seeItemID =  "SeeItemID";
@@ -15,35 +18,11 @@ class AppView
 	private $addCommentOnBuild = "AddCommentOnBuild";
 	private $commentString = "comment";
 	private $champID ='ChampID';
+	private $buildInformation = "Choose a build for more information about it";
 	private $numberOfItems =6;
 	private $numberOfLevels = 18;
 	private $numberOfSpells = 4;
 	
-	//radio buttons POST names and Items 
-	private $radio0 = "radio0";
-	private $radio1 = "radio1";
-	private $radio2 = "radio2";
-	private $radio3 = "radio3";
-	private $radio4 = "radio4";
-	private $radio5 = "radio5";
-	private $radio6 = "radio6";
-	private $radio7 = "radio7";
-	private $radio8 = "radio8";
-	private $radio9 = "radio9";
-	private $radio10 = "radio10";
-	private $radio11 = "radio11";
-	private $radio12 = "radio12";
-	private $radio13 = "radio13";
-	private $radio14 = "radio14";
-	private $radio15 = "radio15";
-	private $radio16 = "radio16";
-	private $radio17 = "radio17";
-	private $item1 = "item1";
-	private $item2 = "item2";
-	private $item3 = "item3";
-	private $item4 = "item4";
-	private $item5 = "item5";
-	private $item6 = "item6";
 	
 
 	public function showChamps($ID,$Name)
@@ -62,6 +41,7 @@ class AppView
 				<img src='" . $item->getURL() . "'/>";
 	}
 
+	// shows the full information build from a champ.
 	public function showBuild($build, $items, $champ, $levels)
 	{
 		$html = "";
@@ -109,7 +89,7 @@ class AppView
 		return $html;
 
 	}
-		// A certain builds buildList
+		// shows a list of builds for a certain champ
 	public function buildBuildsList($build, $items)
 	{
 		return "<p><div><a href='index.php?" . $this->seeBuildID . "=" . $build->getID()  . 
@@ -124,14 +104,21 @@ class AppView
 
 	public function getAddBuildHTML()
 	{
-		return "<p><a href='index.php?".$this->addNewBuild."'> Add New Build tiihii </a></p>";
+		return "<p class='yeahImDifferent'><a href='index.php?".$this->addNewBuild."'> Click here to add a new build! </a></p>";
 	
 	}
 
-	public function getBuildsHeader($champName){
+	public function getBuildsHeader($champName)
+	{
 		return "<h2>Builds for: " . $champName . "</h2>";
 	}
 
+	public function getBuildInformation()
+	{
+		return "<p>". $this->buildInformation ."</p>";
+	}
+
+	// Create a Build form!
 	public function getCreateBuild($items,$champs)
 	{
 
@@ -221,10 +208,7 @@ class AppView
 
 	public function showComment($c)
 	{
-		return "
-			<p>Comment: " . $c[$this->commentString] . "</p>
-			";
-
+		return "<p>Comment:". $c[$this->commentString] ."</p>";
 	}
 
 	/**
@@ -248,19 +232,10 @@ class AppView
 		return $html;
 	}
 
-	public function userWantsToAddAComment()
-	{
-		return isset($_POST[$this->commentString]);
-	}
 
 	public function getIndexLink()
 	{
 		return "<p><a href='index.php' class='notTheSameAsTheOthers'>Back</a></p>";
-	}
-
-	public function getPostedComment()
-	{
-		return $_POST[$this->commentString];
 	}
 
 	public function locationToAddedBuild()
@@ -269,7 +244,19 @@ class AppView
 		die();
 	}
 
-	//isset
+
+	public function userWantsToAddAComment()
+	{
+		return isset($_POST[$this->commentString]);
+	}
+
+	public function getPostedComment()
+	{
+		return $_POST[$this->commentString];
+	}
+
+	
+	//isset validation
 	public function validateAdd()
 	{
 		$ok = true;
@@ -291,6 +278,8 @@ class AppView
 		return $ok;
 	}
 
+
+	// Shows the radio buttons (Levels)
 	public function getButtons()
 	{
 		$buttons = array();
