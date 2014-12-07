@@ -20,16 +20,16 @@ class BuildModel
 		//fetches items in a build with ID
 	public function getBuildItemsByID($id)
 	{
-		$retArray = array();
 		$builItems = $this->dbBuild->getBuildItemsByID($id);
-
+		$items = array();
+		array_push($items, $builItems[0][$this->itemID]);
+		array_push($items, $builItems[1][$this->itemID]);
+		array_push($items, $builItems[2][$this->itemID]);
+		array_push($items, $builItems[3][$this->itemID]);
+		array_push($items, $builItems[4][$this->itemID]);
+		array_push($items, $builItems[5][$this->itemID]);
 		return new BuildItem($builItems[0][$this->buildID], 
-							$builItems[0][$this->itemID], 
-							$builItems[1][$this->itemID], 
-							$builItems[2][$this->itemID], 
-							$builItems[3][$this->itemID], 
-							$builItems[4][$this->itemID], 
-							$builItems[5][$this->itemID]);
+							$items);
 	}
 
 	public function addBuild($completeBuild)

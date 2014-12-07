@@ -64,28 +64,23 @@ class mainController
 			if (is_numeric($id) && $id != -1) 
 			{
 				$builds = $this->champModel->getBuildByChampID($id);
+				$champ = $this->champModel->getChampByID($id);
 				if(count($builds)==0)
 				{
 					$this->appView->noBuildsFoundError();
+				}
+				else{
+					$this->htmlBody .= $this->appView->getBuildsHeader($champ->getChampName());
 				}
 				foreach ($builds as $build) 
 				{
 					$buildItems = $this->buildModel->getBuildItemsByID($build->getID());
 					$items = array();
 					
-					$item = $this->itemModel->getItemById($buildItems->getI1());
-					array_push($items,$item);
-					$item = $this->itemModel->getItemById($buildItems->getI2());
-					array_push($items,$item);
-					$item = $this->itemModel->getItemById($buildItems->getI3());
-					array_push($items,$item);
-					$item = $this->itemModel->getItemById($buildItems->getI4());
-					array_push($items,$item);
-					$item = $this->itemModel->getItemById($buildItems->getI5());
-					array_push($items,$item);
-					$item = $this->itemModel->getItemById($buildItems->getI6());
-					array_push($items,$item);
-						
+					for($i = 0; $i < 6; $i++){
+						$item = $this->itemModel->getItemById($buildItems->getItem($i));
+						array_push($items,$item);
+					}						
 					
 					$this->htmlBody.=$this->appView->buildBuildsList($build, $items);
 				}
@@ -167,18 +162,11 @@ class mainController
 				$levels = $this->buildModel->getLevelsByID($ID);
 
 				$items = array();
-				$item = $this->itemModel->getItemById($buildItems->getI1());
-				array_push($items, $item);
-				$item = $this->itemModel->getItemById($buildItems->getI2());
-				array_push($items, $item);
-				$item = $this->itemModel->getItemById($buildItems->getI3());
-				array_push($items, $item);
-				$item = $this->itemModel->getItemById($buildItems->getI4());
-				array_push($items, $item);
-				$item = $this->itemModel->getItemById($buildItems->getI5());
-				array_push($items, $item);
-				$item = $this->itemModel->getItemById($buildItems->getI6());
-				array_push($items, $item);
+
+				for($i = 0; $i < 6; $i++){
+					$item = $this->itemModel->getItemById($buildItems->getItem($i));
+					array_push($items,$item);
+				}
 
 				$champ = $this->champModel->getChampByID($Build->getChampID());
 

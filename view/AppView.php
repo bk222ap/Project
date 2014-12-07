@@ -9,6 +9,7 @@ class AppView
 	private $userIDString = "userID";
 	private $title = "titel";
 	private $radio = "radio";
+	private $item = "item";
 	private $description = "description";
 	private $addNewBuild ='AddBuild';
 	private $addCommentOnBuild = "AddCommentOnBuild";
@@ -67,11 +68,12 @@ class AppView
 		$html .= "<p>Champion: <a href='index.php?".$this->seeChampID."=".$champ->getChampID()."'>" . $champ->getChampName() . "</a></p>";
 		$html .= "<H3>" . $build->getTitle() . "</H3>";
 		$html .= "<p>" . $build->getDescription() . "</p>";
-		$html .= "<a href='index.php?" . $this->seeItemID . "=" . $items[1]->getItemID() . "'>" . $items[1]->getItemName() . "</a>
-				 <a href='index.php?" . $this->seeItemID . "=" . $items[2]->getItemID() . "'>" . $items[2]->getItemName() . "</a>
-				 <a href='index.php?" . $this->seeItemID . "=" . $items[3]->getItemID() . "'>" . $items[3]->getItemName() . "</a>
-				 <a href='index.php?" . $this->seeItemID . "=" . $items[4]->getItemID() . "'>" . $items[4]->getItemName() . "</a>
-				 <a href='index.php?" . $this->seeItemID . "=" . $items[5]->getItemID() . "'>" . $items[5]->getItemName() . "</a></p>";
+		$html .= "<a href='index.php?" .  $this->seeItemID . "=" . $items[0]->getItemID() . "'><img src='" . $items[0]->getURL() ."'></a>
+				 <a href='index.php?" .  $this->seeItemID . "=" . $items[1]->getItemID() . "'><img src='" . $items[1]->getURL() ."'></a>
+				 <a href='index.php?" .  $this->seeItemID . "=" . $items[2]->getItemID() . "'><img src='" . $items[2]->getURL() ."'></a>
+				 <a href='index.php?" .  $this->seeItemID . "=" . $items[3]->getItemID() . "'><img src='" . $items[3]->getURL() ."'></a>
+				 <a href='index.php?" .  $this->seeItemID . "=" . $items[4]->getItemID() . "'><img src='" . $items[4]->getURL() ."'></a>
+				 <a href='index.php?" .  $this->seeItemID . "=" . $items[5]->getItemID() . "'><img src='" . $items[5]->getURL() ."'></a></p>";
 		$html .= "<p> Levels </p>";
 
 		for($i = 0; $i < $this->numberOfSpells; $i++)
@@ -110,9 +112,8 @@ class AppView
 		// A certain builds buildList
 	public function buildBuildsList($build, $items)
 	{
-
-		return "<p><a href='index.php?" . $this->seeBuildID . "=" . $build->getID()  . 
-				"'> Build:". $build->getID() . "</a> Items: 
+		return "<p><div><a href='index.php?" . $this->seeBuildID . "=" . $build->getID()  . 
+				"'> Build:". $build->getTitle() . "</a></div> Items: 
 				 <a href='index.php?SeeItemID=" . $items[0]->getItemID() . "'><img src='" . $items[0]->getURL() ."'></a>
 				 <a href='index.php?SeeItemID=" . $items[1]->getItemID() . "'><img src='" . $items[1]->getURL() ."'></a>
 				 <a href='index.php?SeeItemID=" . $items[2]->getItemID() . "'><img src='" . $items[2]->getURL() ."'></a>
@@ -125,7 +126,12 @@ class AppView
 	{
 		return "<p><a href='index.php?".$this->addNewBuild."'> Add New Build tiihii </a></p>";
 	
-}
+	}
+
+	public function getBuildsHeader($champName){
+		return "<h2>Builds for: " . $champName . "</h2>";
+	}
+
 	public function getCreateBuild($items,$champs)
 	{
 
@@ -298,6 +304,23 @@ class AppView
 		return $buttons;
 	}
 
+	public function getItems()
+	{
+		$items = array();
+		for($i = 1; $i <= $this->numberOfItems; $i++)
+		{
+			$count = 0;
+			if(isset($_POST[$this->item . $i]))
+			{	$count++;
+				array_push($items, $_POST[$this->item . $i]);
+			}
+			else{
+				throw new \Exception("item was not set " . $count);
+			}
+		}
+		return $items;
+	}
+
 	public function getTitle()
 	{
 		return $_POST[$this->title];
@@ -379,19 +402,9 @@ class AppView
 	// returns all information to have in a build(items,title, description and LevelsUps,)
 	public function getNewBuildPosted()
 	{
-		return new \Model\CompleteBuild($_POST[$this->champID], $_POST[$this->item1], $_POST[$this->item2],
-																$_POST[$this->item3],$_POST[$this->item4], 
-																$_POST[$this->item5], $_POST[$this->item6], 
+		return new \Model\CompleteBuild($_POST[$this->champID], $this->getItems(), 
 															   $_POST[$this->title], $_POST[$this->description],
-															   $_POST[$this->radio0],$_POST[$this->radio1],
-															   $_POST[$this->radio2],$_POST[$this->radio3],
-															   $_POST[$this->radio4],$_POST[$this->radio5],
-															   $_POST[$this->radio6],$_POST[$this->radio7],
-															   $_POST[$this->radio8],$_POST[$this->radio9],
-															   $_POST[$this->radio10],$_POST[$this->radio11],
-															   $_POST[$this->radio12],$_POST[$this->radio13],
-															   $_POST[$this->radio14],$_POST[$this->radio15],
-															   $_POST[$this->radio16],$_POST[$this->radio17]);
+															  	$this->getButtons());
 	}
 
 	private $errors = array();
